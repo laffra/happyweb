@@ -49,9 +49,10 @@
     const PORT_NUMBER = 9137;
     const gradients = [ "#24E100", "#52DD00", "#7ED900", "#A8D500", "#D1D200", "#CEA300", "#CA7500", "#C64900", "#C21F00" ];
     function get_color(url, duration) {
-      console.log("get_color", url, duration, Math.floor(duration*10/3))
-      if (duration > 2) return "C21F00";
-      return gradients[Math.floor(duration*10)];
+      const index = Math.floor(duration * 10);
+      const color = (index >= 8) ? "#C21F00" : gradients[index];
+      console.log("get_color", url, duration, index, color);
+      return color;
     }
     setTimeout(function() {
       $.get("http://localhost:" + PORT_NUMBER + "?sites", function(json) {
